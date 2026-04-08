@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Django static output
+staticfiles/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS
+.DS_Store

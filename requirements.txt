@@ -1,0 +1,4 @@
+# Django 6.0.x requires Python 3.12+ in production.
+Django==6.0.4
+gunicorn==23.0.0
+whitenoise==6.11.0

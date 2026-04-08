@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <section id="home" class="section-shell flex min-h-screen items-start">
+    <div class="grid w-full gap-12 pt-2 sm:pt-4 md:pt-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start lg:gap-16">
+      <div class="min-w-0 text-center lg:text-left">
+        <div class="mx-auto max-w-fit overflow-hidden lg:mx-0">
+          <h1
+            class="text-[clamp(3.15rem,8.6vw,8.25rem)] font-thin uppercase leading-[0.88] tracking-[0.12em] sm:tracking-[0.14em] md:tracking-[0.16em]"
+          >
+            <span class="block" data-load data-delay="0">HIMANSHU</span>
+            <span class="block" data-load data-delay="100">GOSWAMI</span>
+          </h1>
+        </div>
+        <p
+          class="mt-5 text-[0.85rem] font-light uppercase tracking-[0.3em] text-theme-muted"
+          data-load
+          data-delay="180"
+        >
+          COMPUTER SCIENCE STUDENT
+        </p>
+      </div>
+
+      <div class="mx-auto w-full max-w-[320px] pt-2 lg:mx-0 lg:justify-self-end lg:pt-0">
+        <div class="reveal text-center lg:text-left">
+          <p class="border-b border-theme-subtle pb-4 text-[0.68rem] font-light uppercase tracking-[0.25em] text-theme-faint">
+            ABOUT ME
+          </p>
+          <div class="mt-5 space-y-3 text-[0.85rem] font-light leading-[1.8] text-theme-muted">
+            <p>I am currently in my third year of Bachelor of Technology at Parul University.</p>
+            <p>My main focus is machine learning and data science, along with exploring modern technologies.</p>
+            <p>I enjoy building real-world solutions and continuously learning through hands-on projects.</p>
+            <p>Outside of programming, I represent my college in cricket and football.</p>
+            <p>I believe in consistency, discipline, and continuous growth.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="motivation" class="section-shell border-t border-theme-subtle">
+    <div class="section-header">
+      <span>01 / MOTIVATION</span>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="grid items-start gap-10 md:grid-cols-[minmax(0,0.4fr)_minmax(0,0.6fr)] md:gap-12 lg:gap-16">
+      <div class="reveal w-full md:max-w-[430px] md:pr-4 lg:pr-8">
+        <div class="border border-theme-subtle p-3">
+          <div class="relative aspect-[4/5] overflow-hidden border border-theme-subtle">
+            <img
+              src="{% static 'images/profile.jpg' %}"
+              alt="Portrait of Himanshu Goswami"
+              class="h-full w-full object-cover grayscale"
+              loading="lazy"
+              onerror="this.remove(); this.parentElement.querySelector('[data-image-placeholder]').classList.remove('hidden');"
+            />
+            <div
+              data-image-placeholder
+              class="absolute inset-0 hidden items-center justify-center text-[0.62rem] font-light uppercase tracking-[0.28em] text-theme-soft"
+            >
+              Profile Image
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="border border-theme-subtle px-3 py-2 text-[0.62rem] font-light uppercase tracking-[0.22em] text-theme-soft">
+            Backend Developer
+          </span>
+          <span class="border border-theme-subtle px-3 py-2 text-[0.62rem] font-light uppercase tracking-[0.22em] text-theme-soft">
+            Problem Solver
+          </span>
+          <span class="border border-theme-subtle px-3 py-2 text-[0.62rem] font-light uppercase tracking-[0.22em] text-theme-soft">
+            Freelancer
+          </span>
+        </div>
+      </div>
+      <div class="max-w-2xl">
+        <blockquote class="reveal border-l border-theme-subtle pl-5 text-[0.78rem] font-light leading-7 text-theme-soft">
+          "Sometimes you have to break the code to rebuild it better."
+        </blockquote>
+
+        <div class="mt-10 max-w-2xl text-base font-light leading-8">
+          <p class="reveal" data-delay="100">
+            <span class="block">I'm Himanshu Goswami, a Computer Science student and Django-focused backend developer.</span>
+            <span class="block">I build real-world applications that solve practical problems using scalable backend systems.</span>
+            <span class="block">My work focuses on clean APIs, system design, and technologies like Django, PostgreSQL, and Celery.</span>
+            <span class="block">I actively work on freelance and personal projects, turning ideas into functional products.</span>
+            <span class="block">I continuously learn by building and aim to create simple, reliable, and impactful systems.</span>
+          </p>
+        </div>
+
+        <a
+          href="mailto:himanshugoswami5060@gmail.com?subject=Hiring%20Inquiry&amp;body=Hello%20Himanshu,%20I%20would%20like%20to%20work%20with%20you."
+          class="reveal pill-link mt-10 inline-flex w-full justify-center sm:w-auto sm:justify-start"
+          data-delay="180"
+        >
+          HIRE ME
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section-shell border-t border-theme-subtle">
+    <div class="section-header">
+      <span>02 / SKILLS</span>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-16">
+      <div class="reveal">
+        <h2 class="text-[0.68rem] uppercase tracking-[0.28em] text-theme-faint">FRONTEND</h2>
+        <ul class="mt-8 space-y-5 text-base font-light">
+          <li>React</li>
+          <li>JavaScript</li>
+          <li>HTML/CSS</li>
+        </ul>
+      </div>
+      <div class="reveal" data-delay="100">
+        <h2 class="text-[0.68rem] uppercase tracking-[0.28em] text-theme-faint">BACKEND</h2>
+        <ul class="mt-8 space-y-5 text-base font-light">
+          <li>Django</li>
+          <li>Flask</li>
+          <li>REST APIs</li>
+          <li>PostgreSQL</li>
+        </ul>
+      </div>
+      <div class="reveal" data-delay="200">
+        <h2 class="text-[0.68rem] uppercase tracking-[0.28em] text-theme-faint">TOOLS</h2>
+        <ul class="mt-8 space-y-5 text-base font-light">
+          <li>Git</li>
+          <li>Docker</li>
+          <li>Figma</li>
+          <li>Linux</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="works" class="section-shell border-t border-theme-subtle">
+    <div class="section-header">
+      <span>03 / WORKS</span>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="border-t border-theme-subtle">
+      {% for project in projects %}
+        <button
+          type="button"
+          class="project-row project-trigger group grid grid-cols-[auto_1fr] gap-5 px-0 py-6 md:grid-cols-[80px_minmax(0,1fr)_auto_auto] md:items-center"
+          data-title="{{ project.title }}"
+          data-description="{{ project.description }}"
+          data-tech="{{ project.tech_stack }}"
+          data-github="{{ project.github_link }}"
+          data-live="{{ project.live_link }}"
+        >
+          <span class="pt-1 text-left text-[0.72rem] font-light uppercase tracking-[0.25em] opacity-55 md:pt-0">
+            {{ forloop.counter|stringformat:"02d" }}
+          </span>
+          <span class="block text-left">
+            <span class="block text-[1.1rem] font-light uppercase tracking-[0.14em]">
+              {{ project.title }}
+            </span>
+            <span class="mt-2 block text-[0.7rem] uppercase tracking-[0.24em] opacity-55 md:hidden">
+              {{ project.tech_stack }}
+            </span>
+          </span>
+          <span class="hidden text-[0.7rem] uppercase tracking-[0.24em] opacity-55 md:block">
+            {{ project.tech_stack }}
+          </span>
+          <span
+            class="hidden text-2xl opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 md:block md:-translate-x-3"
+            aria-hidden="true"
+          >
+            →
+          </span>
+        </button>
+      {% empty %}
+        <div class="py-8 text-sm font-light text-theme-soft">
+          Add projects in the Django admin to populate this section.
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="section-shell border-t border-theme-subtle">
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+      <div class="reveal">
+        <p class="text-[0.68rem] uppercase tracking-[0.28em] text-theme-faint">CONTACT</p>
+        <div class="mt-8 text-[clamp(2.8rem,6vw,5.5rem)] font-thin uppercase leading-[0.95] tracking-[0.12em]">
+          <span class="block">LET'S BUILD</span>
+          <span class="block">SOMETHING REAL.</span>
+        </div>
+        <a
+          href="mailto:himanshugoswami5060@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-8 inline-block text-[0.88rem] font-light tracking-[0.08em] hover:underline"
+        >
+          himanshugoswami5060@gmail.com
+        </a>
+      </div>
+      <div class="space-y-8 lg:pt-20">
+        <p class="reveal max-w-md text-base font-light leading-8" data-delay="100">
+          If you're building something meaningful or need a reliable backend developer, feel free
+          to reach out.
+        </p>
+        <div class="reveal flex flex-wrap gap-x-4 gap-y-2 text-[0.7rem] uppercase tracking-[0.22em]" data-delay="180">
+          <a href="https://github.com/himanshunexus" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://leetcode.com/u/himanshugoswami05/" target="_blank" rel="noopener noreferrer">LeetCode</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://www.linkedin.com/in/himanshu-goswami-b88085350/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://www.instagram.com/mahi_goswami05/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <span aria-hidden="true">·</span>
+          <a href="mailto:himanshugoswami5060@gmail.com" target="_blank" rel="noopener noreferrer">Email</a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="mt-24 flex flex-col gap-4 border-t border-theme-subtle py-8 text-[0.62rem] uppercase tracking-[0.25em] text-theme-soft md:flex-row md:items-center md:justify-between">
+      <span>© 2026 HIMANSHU GOSWAMI</span>
+      <span>DESIGNED &amp; BUILT BY HIMANSHU GOSWAMI</span>
+    </footer>
+  </section>
+
+  <div
+    class="fixed inset-0 z-[70] invisible opacity-0 pointer-events-none transition-opacity duration-300"
+    data-project-modal
+    aria-hidden="true"
+  >
+    <div class="absolute inset-0 bg-theme opacity-95" data-project-close></div>
+    <div class="relative h-full w-full overflow-y-auto">
+      <div
+        class="flex min-h-screen translate-y-5 flex-col px-6 py-6 transition-transform duration-300 md:px-10 md:py-8 lg:px-16"
+        data-project-panel
+      >
+        <div class="flex items-start justify-between gap-6">
+          <div class="max-w-5xl">
+            <p class="text-[0.68rem] uppercase tracking-[0.28em] text-theme-faint">Selected Work</p>
+            <h2
+              class="mt-6 text-[clamp(3rem,8vw,7rem)] font-thin uppercase leading-[0.88] tracking-[0.14em]"
+              data-modal-title
+            >
+              Project Title
+            </h2>
+          </div>
+          <button
+            type="button"
+            class="text-[1.8rem] font-thin leading-none"
+            data-project-close
+            aria-label="Close project modal"
+          >
+            ×
+          </button>
+        </div>
+
+        <div class="mt-16 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.6fr)]">
+          <div>
+            <p class="max-w-3xl text-base font-light leading-8 text-theme-muted" data-modal-description>
+              Project description
+            </p>
+
+            <div class="mt-10 flex flex-wrap gap-3" data-modal-stack></div>
+
+            <div class="mt-12 flex flex-wrap gap-4">
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pill-link"
+                data-modal-live
+              >
+                Live Link →
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pill-link"
+                data-modal-github
+              >
+                GitHub →
+              </a>
+            </div>
+          </div>
+          <div class="border-t border-theme-subtle pt-6 text-[0.68rem] uppercase tracking-[0.24em] text-theme-faint">
+            The layout stays intentionally spare so the project details, stack, and next step are
+            immediate. Replace these seeded entries from the Django admin whenever you’re ready.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
