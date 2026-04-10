@@ -114,6 +114,13 @@ document.addEventListener("DOMContentLoaded", () => {
       modalPanel.classList.remove("translate-y-5");
       modal.setAttribute("aria-hidden", "false");
       body.classList.add("modal-open");
+
+      // Push state to browser history for back button support
+      window.history.pushState(
+        { type: "project-modal", title: trigger.dataset.title },
+        `${trigger.dataset.title} - Himanshu Goswami`,
+        window.location.href
+      );
     };
 
     const closeModal = () => {
@@ -136,6 +143,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && modal.getAttribute("aria-hidden") === "false") {
+        closeModal();
+      }
+    });
+
+    // Handle browser back button
+    window.addEventListener("popstate", (event) => {
+      if (modal.getAttribute("aria-hidden") === "false") {
         closeModal();
       }
     });
