@@ -1,5 +1,22 @@
 import { test, expect } from '@playwright/test';
 
+test('all text and dynamic dialogs inherit the loaded primary font',async({page})=>{
+  await page.goto('/');
+  await page.evaluate(()=>document.fonts.ready);
+  expect(await page.evaluate(()=>document.fonts.check('16px Audiowide'))).toBeTruthy();
+  const mismatches=()=>page.evaluate(()=>[...document.querySelectorAll('html,body,h1,h2,h3,h4,h5,h6,p,a,button,label,input,textarea,select,dialog,li,span')].filter(e=>!getComputedStyle(e).fontFamily.startsWith('Audiowide')).map(e=>e.tagName+'.'+e.className));
+  expect(await mismatches()).toEqual([]);
+  await page.getByRole('button',{name:'Projects',exact:true}).click();
+  for(const name of ['Smart-Cart','Loan Eligibility Predictor','Bazar','Nivora ERP','This Universe']) {
+    await page.getByRole('button',{name:`Explore ${name}`,exact:true}).click();
+    expect(await mismatches()).toEqual([]);
+    await expect(page.locator('.lens-description')).toHaveCSS('font-family','Audiowide, sans-serif');
+    await page.keyboard.press('Escape');
+  }
+  await page.getByRole('button',{name:'Contact Me',exact:true}).click();
+  expect(await mismatches()).toEqual([]);
+});
+
 test('navigation clears headings and skill orbits move with upright labels',async({page})=>{
   await page.goto('/');
   for(const width of [1440,390,320]) {

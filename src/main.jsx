@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '@fontsource/audiowide/latin-400.css';
-import '@fontsource/monoton/latin-400.css';
 import Universe from './Universe';
 import GalaxyDust from './GalaxyDust';
 import PortraitParticles from './PortraitParticles';
