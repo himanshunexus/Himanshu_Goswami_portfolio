@@ -1,5 +1,20 @@
 import { test, expect } from '@playwright/test';
 
+test('project constellations and labels remain separated across screen sizes',async({page})=>{
+  for(const [width,height] of [[1440,900],[1024,768],[390,844],[320,640],[900,500]]) {
+    await page.setViewportSize({width,height});await page.goto('/');
+    await page.getByRole('button',{name:'Projects',exact:true}).click();
+    await expect.poll(()=>page.locator('#projects').evaluate(e=>Math.abs(e.getBoundingClientRect().top))).toBeLessThan(2);
+    const result=await page.evaluate(()=>{
+      const nav=document.querySelector('.scene-nav').getBoundingClientRect();
+      const boxes=[...document.querySelectorAll('.constellation')].map(e=>{const b=e.getBoundingClientRect(),l=e.querySelector('span').getBoundingClientRect();return {left:Math.min(b.left,l.left),right:Math.max(b.right,l.right),top:b.top,bottom:Math.max(b.bottom,l.bottom)};});
+      return {inside:boxes.every(b=>b.left>=0&&b.right<=innerWidth&&b.top>nav.bottom&&b.bottom<innerHeight*.77),separate:boxes.every((a,i)=>boxes.slice(i+1).every(b=>a.right+8<=b.left||b.right+8<=a.left||a.bottom+8<=b.top||b.bottom+8<=a.top))};
+    });
+    expect(result).toEqual({inside:true,separate:true});
+    await page.screenshot({path:`test-results/constellations-${width}.png`});
+  }
+});
+
 test('all text and dynamic dialogs inherit the loaded primary font',async({page})=>{
   await page.goto('/');
   await page.evaluate(()=>document.fonts.ready);

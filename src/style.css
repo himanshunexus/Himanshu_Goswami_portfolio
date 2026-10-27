@@ -129,3 +129,23 @@ input,textarea,select,button,dialog{font-family:inherit}
 }
 @media(max-height:600px) and (prefers-reduced-motion:no-preference){.about-copy{top:55%}.about-copy h2{font-size:24px;margin:8px 0}.about-copy>p:not(.eyebrow){font-size:11px;line-height:1.6}.about-copy button{margin-top:12px}}
 @media(prefers-reduced-motion:reduce){.orbit-toggle{display:none}.intro-copy{top:20%}}
+
+/* Reference composition: two upper constellations and three separated below. */
+.constellation-map{inset:90px 8% 30%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:24px 7%;align-items:center;justify-items:center}
+.constellation-map .constellation{position:relative;left:auto!important;top:auto!important;width:min(100%,23svh,230px)!important;min-width:0;aspect-ratio:1;margin:0 0 18px}
+.constellation-loan{grid-column:1;grid-row:1}
+.constellation-bazar{grid-column:3;grid-row:1}
+.constellation-smartcart{grid-column:1;grid-row:2}
+.constellation-nivora{grid-column:2;grid-row:2}
+.constellation-portfolio{grid-column:3;grid-row:2}
+.constellation-map .constellation>span{top:100%;bottom:auto;margin-top:8px;max-width:140%;font-size:clamp(8px,.7vw,10px);line-height:1.5}
+@media(max-width:700px){
+ .constellation-map{inset:90px 7% 29%;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:16px 18%}
+ .constellation-map .constellation{width:min(100%,12svh,120px)!important;margin-bottom:20px}
+ .constellation-bazar{grid-column:2;grid-row:1}
+ .constellation-nivora{grid-column:1 / -1;grid-row:2}
+ .constellation-smartcart{grid-column:1;grid-row:3}
+ .constellation-portfolio{grid-column:2;grid-row:3}
+ .constellation-map .constellation>span{font-size:8px;max-width:145%;width:max-content}
+}
+@media(max-height:550px) and (min-width:701px){.constellation-map{inset:76px 10% 24%;gap:16px 10%}.constellation-map .constellation{width:min(100%,18svh)!important}.constellation-map .constellation>span{margin-top:3px;font-size:8px}}
