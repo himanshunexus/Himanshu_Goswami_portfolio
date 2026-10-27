@@ -17,25 +17,34 @@ const skills = [
 export default function Skillverse() {
   const section = useRef(null);
   const [visible, setVisible] = useState(false);
+  const [paused, setPaused] = useState(false);
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting));
+    let intersecting = false;
+    const update = () => setVisible(intersecting && !document.hidden);
+    const observer = new IntersectionObserver(([entry]) => { intersecting = entry.isIntersecting; update(); });
     observer.observe(section.current);
-    return () => observer.disconnect();
+    document.addEventListener('visibilitychange', update);
+    return () => { observer.disconnect(); document.removeEventListener('visibilitychange', update); };
   }, []);
-  return <section id="skillverse" ref={section} className={`skillverse-section ${visible ? 'is-visible' : ''}`} aria-labelledby="skillverse-title">
+  return <section id="skillverse" ref={section} className={`skillverse-section ${visible && !paused ? 'is-visible' : ''}`} aria-labelledby="skillverse-title">
     <header className="skillverse-heading"><p className="eyebrow">The tools in my orbit</p><h2 id="skillverse-title">Skillverse</h2><p>A solar system of things I build with.</p></header>
     <div className="solar-system">
-      <svg className="orbital-paths" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-        {[ [185,100], [305,180], [440,255] ].map(([rx,ry]) => <ellipse key={rx} cx="500" cy="300" rx={rx} ry={ry}/>)}
-        <path d="M50 300h900M500 30v540"/>
+      <svg className="orbital-paths" viewBox="0 0 1000 1000" aria-hidden="true">
+        {[180, 300, 420].map(r => <circle key={r} cx="500" cy="500" r={r}/>)}
       </svg>
       <div className="skill-sun" aria-hidden="true"><span>BUILD</span></div>
-      <ul className="skill-planets" aria-label="Technical skills">{skills.map(([name, description, color, x, y, size], i) =>
-        <li key={name} className="skill-planet" style={{'--planet-color':color,'--planet-size':`${size}px`,'--x':`${x}%`,'--y':`${y}%`,'--delay':`${-i * .7}s`}}>
-          <span className="planet-sphere" aria-hidden="true"/><span className="planet-name">{name}</span><span className="planet-description">{description}</span>
-        </li>
-      )}</ul>
+      <ul className="skill-planets" aria-label="Technical skills">{skills.map(([name, description, color, , , size], i) => {
+        const ring = i < 3 ? 0 : i < 7 ? 1 : 2;
+        const slot = i - [0, 3, 7][ring];
+        const phase = slot * 360 / [3, 4, 4][ring] + [15, 50, 25][ring];
+        return <li key={name} className="skill-orbit" style={{'--planet-color':color,'--planet-size':`${size}px`,'--diameter':`${[36,60,84][ring]}%`,'--duration':`${[55,85,120][ring]}s`,'--phase':`${phase}deg`}}>
+          <div className="planet-anchor"><div className="skill-planet">
+            <span className="planet-sphere" aria-hidden="true"/><span className="planet-name">{name}</span><span className="planet-description">{description}</span>
+          </div></div>
+        </li>;
+      })}</ul>
     </div>
+    <button className="orbit-toggle" onClick={() => setPaused(value => !value)} aria-pressed={paused}>{paused ? 'Resume orbits' : 'Pause orbits'}</button>
     <p className="skillverse-note">Ideas at the center. Possibilities in every orbit.</p>
   </section>;
 }
