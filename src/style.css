@@ -79,4 +79,5 @@
 @media(max-width:700px){.about-copy{top:42%;width:86vw}.about-copy h2{font-size:26px}.about-copy>p:not(.eyebrow){font-size:13px}.terrain-layer{width:160%;max-width:none;left:-25%;height:100%;bottom:-18%}.telescope-figure{left:9%;width:33%;bottom:3%}.moon{width:38px;height:38px}}
 @media(prefers-reduced-motion:reduce){.about-copy{top:65%}}
 .terrain-layer{bottom:-32%}
+@media(min-width:701px){.constellation-smartcart,.constellation-portfolio{top:37%!important}.constellation-nivora{top:31%!important}}
 @media(max-width:700px){.terrain-layer{bottom:-28%}}
