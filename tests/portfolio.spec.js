@@ -4,7 +4,8 @@ test('all text and dynamic dialogs inherit the loaded primary font',async({page}
   await page.goto('/');
   await page.evaluate(()=>document.fonts.ready);
   expect(await page.evaluate(()=>document.fonts.check('16px Audiowide'))).toBeTruthy();
-  const mismatches=()=>page.evaluate(()=>[...document.querySelectorAll('html,body,h1,h2,h3,h4,h5,h6,p,a,button,label,input,textarea,select,dialog,li,span')].filter(e=>!getComputedStyle(e).fontFamily.startsWith('Audiowide')).map(e=>e.tagName+'.'+e.className));
+  await expect(page.locator('.intro-copy h1')).toHaveCSS('font-family','Monoton, monospace');
+  const mismatches=()=>page.evaluate(()=>[...document.querySelectorAll('html,body,h1,h2,h3,h4,h5,h6,p,a,button,label,input,textarea,select,dialog,li,span')].filter(e=>!e.matches('.intro-copy h1')&&!getComputedStyle(e).fontFamily.startsWith('Audiowide')).map(e=>e.tagName+'.'+e.className));
   expect(await mismatches()).toEqual([]);
   await page.getByRole('button',{name:'Projects',exact:true}).click();
   for(const name of ['Smart-Cart','Loan Eligibility Predictor','Bazar','Nivora ERP','This Universe']) {

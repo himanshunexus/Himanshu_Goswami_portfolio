@@ -1,4 +1,5 @@
 :root{--main-font:"Audiowide",sans-serif}
+.intro-copy h1{font-family:"Monoton",monospace}
 html,body{font-family:var(--main-font)}
 *,*::before,*::after{font-family:inherit}
 input,textarea,select,button,dialog{font-family:inherit}
