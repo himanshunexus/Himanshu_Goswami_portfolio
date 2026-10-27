@@ -29,8 +29,29 @@ test('desktop journey, all project dialogs, and the new Bazar destination', asyn
   await expect(page.getByRole('button',{name:'Contact Me',exact:true})).toHaveAttribute('aria-current','page');
   await expect.poll(()=>page.locator('#contact').evaluate(e=>Math.abs(e.getBoundingClientRect().top))).toBeLessThan(2);
   await expect(page.getByRole('link',{name:'Send me an email'})).toHaveAttribute('href','mailto:himanshugoswami5060@gmail.com');
+  await expect(page.getByRole('link',{name:'LeetCode',exact:true})).toHaveAttribute('href','https://leetcode.com/u/himanshugoswami05/');
   await page.screenshot({path:'test-results/desktop-contact.png'});
   expect(errors).toEqual([]);
+});
+
+test('Skillverse, revised biography and scene artwork work on desktop and mobile',async({page})=>{
+  for(const width of [1440,390]) {
+    await page.setViewportSize({width,height:900});
+    await page.goto('/');
+    await expect(page.locator('.about-copy')).toContainText("I'm Himanshu, a technology-driven creator exploring machine learning and AI.");
+    await expect(page.locator('.about-detail')).toHaveText("Off screen, you'll find me on the cricket field.");
+    if(width<700) await page.getByRole('button',{name:'Open navigation'}).click();
+    await page.getByRole('button',{name:'Skillverse',exact:true}).click();
+    await expect(page.getByRole('button',{name:'Skillverse',exact:true,includeHidden:true})).toHaveAttribute('aria-current','page');
+    await expect(page.locator('.skill-planet')).toHaveCount(11);
+    await expect.poll(()=>page.locator('#skillverse').evaluate(e=>Math.abs(e.getBoundingClientRect().top))).toBeLessThan(2);
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
+    await page.screenshot({path:`test-results/skillverse-${width}.png`});
+    if(width<700) await page.getByRole('button',{name:'Open navigation'}).click();
+    await page.getByRole('button',{name:'Projects',exact:true}).click();
+    await expect.poll(()=>page.locator('.telescope-figure').evaluate(e=>e.complete&&e.naturalWidth>0)).toBeTruthy();
+    await expect(page.locator('.constellation-art')).toHaveCount(5);
+  }
 });
 
 test('mobile navigation and accessible project lens fit the viewport',async({page})=>{

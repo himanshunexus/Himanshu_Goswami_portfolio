@@ -70,6 +70,7 @@ export default function PortraitParticles({ reducedMotion }) {
     };
     function draw(timestamp) {
       if (disposed || !visible || document.hidden) return;
+      if (last && timestamp - last < 30) { frame = requestAnimationFrame(draw); return; }
       const delta = last ? Math.min((timestamp - last) / 1000, .05) : 0;
       last = timestamp; elapsed += delta;
       material.uniforms.time.value = elapsed;
@@ -108,7 +109,7 @@ export default function PortraitParticles({ reducedMotion }) {
         if (disposed) return;
         try {
           const sample = document.createElement('canvas');
-          sample.width = innerWidth < 700 ? 320 : 480;
+          sample.width = innerWidth < 700 ? 260 : 400;
           sample.height = Math.round(sample.width * image.height / image.width);
           const ctx = sample.getContext('2d', { willReadFrequently: true });
           if (!ctx) return;
@@ -136,7 +137,7 @@ export default function PortraitParticles({ reducedMotion }) {
           geometry.setAttribute('seed', new THREE.Float32BufferAttribute(seeds, 1));
           geometry.setAttribute('luminance', new THREE.Float32BufferAttribute(brightness, 1));
           renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, powerPreference: 'low-power' });
-          renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+          renderer.setPixelRatio(Math.min(devicePixelRatio, 1.25));
           material = new THREE.ShaderMaterial({
             vertexShader, fragmentShader, vertexColors: true, transparent: true, depthWrite: false,
             uniforms: { time: { value: 0 }, depth: { value: 2 }, reveal: { value: 0 }, pixelRatio: { value: renderer.getPixelRatio() }, trail: { value: trail } },

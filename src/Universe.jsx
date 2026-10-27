@@ -26,16 +26,14 @@ const fragmentShader = `
     gl_FragColor = vec4(vColor, glow * opacity);
   }
 `;
-export default function Universe({ progress, reducedMotion }) {
+export default function Universe({ progressRef, reducedMotion }) {
   const container = useRef(null);
-  const progressRef = useRef(progress);
-  progressRef.current = progress;
   useEffect(() => {
     const host = container.current;
     let renderer;
     try { renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'low-power' }); }
     catch { host.classList.add('canvas-fallback'); return; }
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.25));
     host.appendChild(renderer.domElement);
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(58, 1, 0.1, 400);
@@ -72,7 +70,7 @@ export default function Universe({ progress, reducedMotion }) {
     ];
     settings.forEach(([x,y,z,radius,tilt,rotation], index) => {
       const positions = [], colors = [], sizes = [];
-      const count = mobile ? 4500 : 10500;
+      const count = mobile ? 2400 : 6000;
       for (let i = 0; i < count; i++) {
         const r = Math.pow(rand(), 1.7) * radius;
         const branch = i % 3 * Math.PI * 2 / 3;
@@ -105,7 +103,7 @@ export default function Universe({ progress, reducedMotion }) {
       frame = requestAnimationFrame(draw);
       if (!visible || document.hidden || time - lastTime < 30) return;
       lastTime = time;
-      const p = progressRef.current;
+      const p = reducedMotion ? 0 : progressRef.current;
       const travel = Math.min(p * 1.25, 1);
       camera.position.z = 34 - travel * 27;
       camera.position.x += ((reducedMotion ? 0 : mouse.x * 1.2) - camera.position.x) * .04;

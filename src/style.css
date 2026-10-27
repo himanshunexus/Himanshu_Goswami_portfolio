@@ -25,3 +25,58 @@
 .contact-portrait .portrait-fallback{opacity:.65;transition:opacity .6s ease}
 .contact-portrait.particles-ready .portrait-fallback{opacity:0}
 @media(prefers-reduced-motion:reduce){.contact-portrait{opacity:.75!important}}
+
+/* Shorter journeys and static background stars keep scrolling responsive. */
+.universe-section{height:300vh}
+.projects-section{height:110vh}
+.starfield i{animation:none}
+.skillverse-section{position:relative;min-height:100svh;padding:110px 24px 48px;overflow:hidden;background:radial-gradient(ellipse at 50% 55%,#151323 0%,#050509 43%,#000 75%)}
+.skillverse-heading{text-align:center;position:relative;z-index:1}
+.skillverse-heading h2{font-family:Audiowide,sans-serif;font-weight:400;font-size:clamp(30px,4vw,52px);margin:14px 0;color:#e7e4e0}
+.skillverse-heading>p:last-child{font-size:14px;color:#9398ab;line-height:1.6}
+.solar-system{position:relative;width:min(1100px,100%);height:min(60vw,560px);min-height:450px;margin:12px auto 25px}
+.orbital-paths{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:#c9b0ef26;stroke-width:1;pointer-events:none}
+.orbital-paths path{stroke:#c9b0ef0b;stroke-dasharray:3 10}
+.skill-sun{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:82px;height:82px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#fff1c5,#e5a251 48%,#8f452a);box-shadow:0 0 35px #efac5745,0 0 90px #efac5718}
+.skill-sun span{font-family:Audiowide,sans-serif;font-size:10px;letter-spacing:.1em;color:#382316}
+.skill-planets{list-style:none;margin:0;padding:0}
+.skill-planet{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;text-align:center;width:130px;gap:8px}
+.planet-sphere{display:block;width:var(--planet-size);height:var(--planet-size);border-radius:50%;background:radial-gradient(circle at 28% 25%,#ffffffbb,transparent 35%),radial-gradient(circle at 30% 30%,var(--planet-color),#070a16 95%);box-shadow:0 0 19px color-mix(in srgb,var(--planet-color) 22%,transparent);animation:planet-float 7s ease-in-out infinite;animation-delay:var(--delay);animation-play-state:paused}
+.is-visible .planet-sphere{animation-play-state:running}
+.planet-name{font-family:Audiowide,sans-serif;font-size:12px;color:#e5e8f3}
+.planet-description{font-size:10px;color:#8e94a8}
+.skillverse-note{text-align:center;font-size:11px;letter-spacing:.07em;color:#b39570;line-height:1.6}
+@keyframes planet-float{50%{transform:translateY(-6px) rotate(8deg)}}
+@media(max-width:700px){
+ .universe-section{height:250vh}
+ .projects-section{height:100svh}
+ .skillverse-section{padding:95px 22px 40px}
+ .solar-system{height:auto;min-height:0;margin:30px auto}
+ .orbital-paths{opacity:.6}
+ .skill-sun{position:relative;top:auto;left:auto;transform:none;margin:0 auto 35px;width:64px;height:64px}
+ .skill-planets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px 8px;position:relative}
+ .skill-planet{position:relative;left:auto;top:auto;transform:none;width:auto;gap:9px}
+ .planet-sphere{width:34px;height:34px}
+ .planet-name{font-size:10px}
+ .planet-description{font-size:9px;line-height:1.5;max-width:90px}
+}
+@media(prefers-reduced-motion:reduce){.universe-section{height:auto}.projects-section{height:100svh}}
+.about-copy{top:42%;width:min(650px,86vw)}
+.about-copy h2{margin:12px 0 18px}
+.about-copy>p:not(.eyebrow){font-size:15px;line-height:1.7}
+.terrain-layers{position:absolute;inset:0;pointer-events:none;z-index:4;overflow:hidden}
+.terrain-layer{position:absolute;left:0;bottom:-22%;width:100%;height:122%;object-fit:cover;object-position:center bottom}
+.telescope-figure{position:absolute;left:15%;bottom:2%;width:22%;max-width:330px;height:auto}
+.constellation-art{opacity:.35;transition:opacity .45s,transform .6s;transform-origin:center;pointer-events:none}
+.constellation:hover .constellation-art,.constellation:focus-visible .constellation-art{opacity:.65;transform:scale(1.04)}
+.constellation circle:not(.star-halo){transform-box:fill-box;transform-origin:center;animation:constellation-pulse 4s ease-in-out infinite;animation-play-state:paused}
+.constellation g:nth-child(3n) circle{animation-delay:-1.5s}
+.constellation g:nth-child(2n) circle{animation-delay:-2.7s}
+.scene-active .constellation circle{animation-play-state:running}
+.scene-active .starfield i:nth-child(5n){animation:twinkle 5s ease-in-out infinite}
+.moon{box-shadow:0 0 22px #bddaff66;background:radial-gradient(circle at 30% 30%,#d6e7f7,#849bb4 60%,#43576e);width:65px;height:65px}
+@keyframes constellation-pulse{0%,100%{opacity:.72;transform:scale(.95)}50%{opacity:1;transform:scale(1.05)}}
+@media(max-width:700px){.about-copy{top:42%;width:86vw}.about-copy h2{font-size:26px}.about-copy>p:not(.eyebrow){font-size:13px}.terrain-layer{width:160%;max-width:none;left:-25%;height:100%;bottom:-18%}.telescope-figure{left:9%;width:33%;bottom:3%}.moon{width:38px;height:38px}}
+@media(prefers-reduced-motion:reduce){.about-copy{top:65%}}
+.terrain-layer{bottom:-32%}
+@media(max-width:700px){.terrain-layer{bottom:-28%}}
