@@ -1,8 +1,4 @@
-"""URL configuration for the portfolio project."""
-from django.contrib import admin
+"""Public portfolio only; no admin, accounts, sessions, or database routes."""
 from django.urls import include, path
 
-urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", include("core.urls")),
-]
+urlpatterns = [path('', include('core.urls'))]

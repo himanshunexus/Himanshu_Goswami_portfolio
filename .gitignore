@@ -18,3 +18,13 @@ npm-debug.log*
 
 # OS
 .DS_Store
+
+# Vite production build
+dist/
+
+# Browser verification output
+test-results/
+playwright-report/
+.env
+.env.*
+!.env.example
